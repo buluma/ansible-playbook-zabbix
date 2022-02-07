@@ -28,4 +28,4 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run playbook
       #  run: ./update.yml
-        run: ansible-galaxy install -r roles/requirements.yml && terraform init && ./playbook.yml
+        run: ansible-galaxy install -r roles/requirements.yml && ./update.yml
