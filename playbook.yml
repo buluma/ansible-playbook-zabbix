@@ -81,7 +81,7 @@
   remote_user: root
 
   roles:
-    - role: buluma.zabbix_server
+    - role: robertdebock.zabbix_server
 
 - name: setup zabbix_web resources
   hosts: zabbix_web
