@@ -27,4 +27,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run playbook
-        run: ./playbook.yml
+        run: ./update.yml
