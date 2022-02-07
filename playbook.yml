@@ -1,0 +1,99 @@
+#!/usr/bin/env ansible-playbook
+---
+- name: create machines
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: apply terraform code
+      terraform:
+        project_path: ./terraform
+        state: present
+      register: terraform
+
+    - name: add terraform zabbix_web host to inventory
+      add_host:
+        name: "{{ terraform.outputs.zabbix_web.value }}"
+        groups:
+           - zabbix_web
+
+    - name: add terraform zabbix_server host to inventory
+      add_host:
+        name: "{{ terraform.outputs.zabbix_server.value }}"
+        groups:
+           - zabbix_server
+
+    - name: add terraform mysql_server host to inventory
+      add_host:
+        name: "{{ terraform.outputs.mysql_server.value }}"
+        groups:
+           - mysql_server
+
+- name: setup shared resources
+  hosts: all
+  become: yes
+  gather_facts: no
+  remote_user: root
+
+  roles:
+    - role: buluma.bootstrap
+    - role: buluma.common
+    - role: buluma.aide
+    - role: buluma.auto_update
+    - role: buluma.update
+    - role: buluma.firewall
+    - role: buluma.epel
+    - role: buluma.fail2ban
+    - role: buluma.logwatch
+    - role: buluma.update
+    - role: buluma.maintenance
+    - role: robertdebock.unowned_files
+    - role: robertdebock.rsyslog
+    - role: buluma.postfix
+    - role: robertdebock.digitalocean_agent
+    - role: buluma.zabbix_repository
+    - role: robertdebock.zabbix_agent
+
+- name: setup mysql_server resources
+  hosts: mysql_server
+  become: yes
+  gather_facts: yes
+  remote_user: root
+
+  roles:
+    - role: buluma.mysql
+
+- name: setup zabbix_server and zabbix_web resources
+  hosts: zabbix_server:zabbix_web
+  become: yes
+  gather_facts: yes
+  remote_user: root
+
+  roles:
+    - role: buluma.buildtools
+    - role: buluma.selinux
+    - role: robertdebock.software
+
+- name: setup zabbix_server resources
+  hosts: zabbix_server
+  become: yes
+  gather_facts: yes
+  remote_user: root
+
+  roles:
+    - role: buluma.zabbix_server
+
+- name: setup zabbix_web resources
+  hosts: zabbix_web
+  become: yes
+  gather_facts: yes
+  remote_user: root
+
+  roles:
+    - role: buluma.core_dependencies
+    - role: buluma.python_pip
+    - role: buluma.openssl
+    - role: buluma.httpd
+    - role: buluma.php
+    - role: buluma.zabbix_web
+    - role: buluma.certbot
