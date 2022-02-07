@@ -12,7 +12,7 @@ roles:
   - name: buluma.fail2ban
   - name: buluma.firewall
   - name: buluma.httpd
-  - name: buluma.logwatch
+  - name: robertdebock.logwatch
   - name: buluma.maintenance
   - name: buluma.mysql
   - name: buluma.openssl

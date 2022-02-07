@@ -44,7 +44,7 @@
     - role: buluma.firewall
     - role: buluma.epel
     - role: buluma.fail2ban
-    - role: buluma.logwatch
+    - role: robertdebock.logwatch
     - role: buluma.update
     - role: buluma.maintenance
     - role: robertdebock.unowned_files
