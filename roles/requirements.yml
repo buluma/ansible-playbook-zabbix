@@ -7,7 +7,7 @@ roles:
   - name: buluma.certbot
   - name: buluma.common
   - name: buluma.core_dependencies
-  - name: buluma.digitalocean_agent
+  - name: robertdebock.digitalocean_agent
   - name: buluma.epel
   - name: buluma.fail2ban
   - name: buluma.firewall
@@ -26,5 +26,5 @@ roles:
   - name: buluma.update
   - name: robertdebock.zabbix_agent
   - name: buluma.zabbix_repository
-  - name: buluma.zabbix_server
+  - name: robertdebock.zabbix_server
   - name: buluma.zabbix_web
