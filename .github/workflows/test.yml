@@ -28,5 +28,5 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run playbook
       #  run: ./update.yml
-      #  run: ansible-galaxy install -r roles/requirements.yml -vvv && ansible-playbook playbook.yml -vvv
-        run: ansible-galaxy install -r roles/requirements.yml -vvv
+        run: ansible-galaxy install -r roles/requirements.yml -vvv && ansible-playbook playbook.yml -vvv
+      #  run: ansible-galaxy install -r roles/requirements.yml -vvv
