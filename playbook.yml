@@ -36,22 +36,14 @@
   remote_user: root
 
   roles:
-    - role: buluma.bootstrap
-    - role: buluma.common
-    - role: buluma.aide
-    - role: buluma.auto_update
-    - role: buluma.update
-    - role: buluma.firewall
-    - role: buluma.epel
-    - role: buluma.fail2ban
-    - role: robertdebock.logwatch
-    - role: buluma.update
-    - role: buluma.maintenance
-    - role: robertdebock.unowned_files
+    - role: robertdebock.bootstrap
+    - role: robertdebock.common
+    - role: robertdebock.firewall
+    - role: robertdebock.epel
     - role: robertdebock.rsyslog
-    - role: buluma.postfix
+    - role: robertdebock.postfix
     - role: robertdebock.digitalocean_agent
-    - role: buluma.zabbix_repository
+    - role: robertdebock.zabbix_repository
     - role: robertdebock.zabbix_agent
 
 - name: setup mysql_server resources
@@ -61,7 +53,7 @@
   remote_user: root
 
   roles:
-    - role: buluma.mysql
+    - role: robertdebock.mysql
 
 - name: setup zabbix_server and zabbix_web resources
   hosts: zabbix_server:zabbix_web
@@ -70,8 +62,8 @@
   remote_user: root
 
   roles:
-    - role: buluma.buildtools
-    - role: buluma.selinux
+    - role: robertdebock.buildtools
+    - role: robertdebock.selinux
     - role: robertdebock.software
 
 - name: setup zabbix_server resources
@@ -90,10 +82,10 @@
   remote_user: root
 
   roles:
-    - role: buluma.core_dependencies
-    - role: buluma.python_pip
-    - role: buluma.openssl
-    - role: buluma.httpd
-    - role: buluma.php
-    - role: buluma.zabbix_web
-    - role: buluma.certbot
+    - role: robertdebock.core_dependencies
+    - role: robertdebock.python_pip
+    - role: robertdebock.openssl
+    - role: robertdebock.httpd
+    - role: robertdebock.php
+    - role: robertdebock.zabbix_web
+    - role: robertdebock.certbot
